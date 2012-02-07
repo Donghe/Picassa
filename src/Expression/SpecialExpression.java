@@ -4,9 +4,9 @@ import model.ParserException;
 import model.RGBColor;
 import model.ParserException.Type;
 import model.util.ColorCombinations;
+
 /**
- * the Expression of special operator
- * until now it includes "random" and "color"
+ * the Expression of special operator until now it includes "random" and "color"
  * 
  * @author Donghe Zhao
  */
@@ -38,26 +38,25 @@ public class SpecialExpression extends Expression {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RGBColor evaluate(double DomainX, double DomainY,double CurrentTime) {
+	public RGBColor evaluate(double DomainX, double DomainY, double CurrentTime) {
 		/*
-		RGBColor left=myOperand1.evaluate(DomainX, DomainY);
-		RGBColor middle=myOperand2.evaluate(DomainX, DomainY);
-		RGBColor right=myOperand3.evaluate(DomainX, DomainY);
-		return ColorCombinations.doSpecial(myCommand, left, middle, right);
-		*/
-		if(myCommand.equals("random")){
+		 * RGBColor left=myOperand1.evaluate(DomainX, DomainY); RGBColor
+		 * middle=myOperand2.evaluate(DomainX, DomainY); RGBColor
+		 * right=myOperand3.evaluate(DomainX, DomainY); return
+		 * ColorCombinations.doSpecial(myCommand, left, middle, right);
+		 */
+		if (myCommand.equals("random")) {
 			return ColorCombinations.random();
-		}
-		else if (myCommand.equals("color"))
+		} else if (myCommand.equals("color"))
 			return ColorCombinations.color(
-					myOperand1.evaluate(DomainX, DomainY,CurrentTime),
-					myOperand2.evaluate(DomainX, DomainY,CurrentTime),
-					myOperand3.evaluate(DomainX, DomainY,CurrentTime));
+					myOperand1.evaluate(DomainX, DomainY, CurrentTime),
+					myOperand2.evaluate(DomainX, DomainY, CurrentTime),
+					myOperand3.evaluate(DomainX, DomainY, CurrentTime));
 		else if (myCommand.equals("if"))
 			return ColorCombinations.ifCondition(
-					myOperand1.evaluate(DomainX, DomainY,CurrentTime),
-					myOperand2.evaluate(DomainX, DomainY,CurrentTime),
-					myOperand3.evaluate(DomainX, DomainY,CurrentTime));
+					myOperand1.evaluate(DomainX, DomainY, CurrentTime),
+					myOperand2.evaluate(DomainX, DomainY, CurrentTime),
+					myOperand3.evaluate(DomainX, DomainY, CurrentTime));
 		else
 			throw new ParserException("Unknown Command " + myCommand,
 					Type.UNKNOWN_COMMAND);

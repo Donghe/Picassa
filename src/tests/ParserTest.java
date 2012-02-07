@@ -26,16 +26,16 @@ public class ParserTest {
 
 	@Test
 	public void testConstant() {
-		RGBColor actual = myParser.makeExpression("1").evaluate(0, 0,0);
+		RGBColor actual = myParser.makeExpression("1").evaluate(0, 0, 0);
 		assertTrue(WHITE.equals(actual));
-		actual = myParser.makeExpression("-1").evaluate(0, 0,0);
+		actual = myParser.makeExpression("-1").evaluate(0, 0, 0);
 		assertTrue(BLACK.equals(actual));
-		actual = myParser.makeExpression("0.5").evaluate(0, 0,0);
+		actual = myParser.makeExpression("0.5").evaluate(0, 0, 0);
 		assertTrue(GRAY.equals(actual));
-		actual = myParser.makeExpression(".5").evaluate(0, 0,0);
+		actual = myParser.makeExpression(".5").evaluate(0, 0, 0);
 		assertTrue(GRAY.equals(actual));
 		try {
-			myParser.makeExpression("0.5 0.5").evaluate(0, 0,0);
+			myParser.makeExpression("0.5 0.5").evaluate(0, 0, 0);
 			fail("Exception should have been thrown");
 		} catch (ParserException e) {
 			// actually that's good
@@ -46,21 +46,21 @@ public class ParserTest {
 
 	@Test
 	public void testBinaryOps() {
-		RGBColor actual = myParser.makeExpression("(plus .1 .9)")
-				.evaluate(0, 0,0);
+		RGBColor actual = myParser.makeExpression("(plus .1 .9)").evaluate(0,
+				0, 0);
 		assertTrue(WHITE.equals(actual));
 		actual = myParser.makeExpression(
-				"(plus (plus 0.01 0.09) (plus 0.4 0.5))").evaluate(0, 0,0);
+				"(plus (plus 0.01 0.09) (plus 0.4 0.5))").evaluate(0, 0, 0);
 		assertTrue(WHITE.equals(actual));
 		actual = myParser.makeExpression(
 				"    (plus(plus 0.01 0.09)(plus 0.4 0.5   ))    ").evaluate(0,
-				0,0);
+				0, 0);
 		assertTrue(WHITE.equals(actual));
 		actual = myParser.makeExpression("(minus (div 1.8 2) (mul -10 0.01))")
-				.evaluate(0, 0,0);
+				.evaluate(0, 0, 0);
 		assertTrue(WHITE.equals(actual));
 		try {
-			myParser.makeExpression("(fooo 0.1 0.9)").evaluate(0, 0,0);
+			myParser.makeExpression("(fooo 0.1 0.9)").evaluate(0, 0, 0);
 			fail("Exception should have been thrown");
 		} catch (ParserException e) {
 			// actually that's good

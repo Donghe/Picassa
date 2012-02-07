@@ -10,11 +10,11 @@ import model.util.ColorCombinations;
  */
 
 public class TwoParameterOperatorExpression extends Expression {
-	
+
 	private String myCommand;
 	private Expression myOperand1;
 	private Expression myOperand2;
-	
+
 	/**
 	 * Create expression representing the given operation between the two given
 	 * sub-expressions.
@@ -30,10 +30,10 @@ public class TwoParameterOperatorExpression extends Expression {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RGBColor evaluate(double DomainX, double DomainY,double CurrentTime) {
-			RGBColor left = myOperand1.evaluate(DomainX, DomainY,CurrentTime);
-			RGBColor right = myOperand2.evaluate(DomainX, DomainY, CurrentTime);
-			return ColorCombinations.doTwoParameterOperator(myCommand, left, right);
+	public RGBColor evaluate(double DomainX, double DomainY, double CurrentTime) {
+		RGBColor left = myOperand1.evaluate(DomainX, DomainY, CurrentTime);
+		RGBColor right = myOperand2.evaluate(DomainX, DomainY, CurrentTime);
+		return ColorCombinations.doTwoParameterOperator(myCommand, left, right);
 	}
 
 	public String toString() {

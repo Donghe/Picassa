@@ -49,13 +49,13 @@ public class SpecialExpressionFactory extends ExpressionFactory {
 		}
 
 		Expression left = Parser.getExpressionType(Input, myCurrentPosition); // parameter
-																			// one
+																				// one
 		myCurrentPosition = Parser.getMyCurrentPosition();
 		Expression right = Parser.getExpressionType(Input, myCurrentPosition); // parameter
 																				// two
 		myCurrentPosition = Parser.getMyCurrentPosition();
 		Expression last = Parser.getExpressionType(Input, myCurrentPosition); // parameter
-																			// three
+																				// three
 		myCurrentPosition = Parser.getMyCurrentPosition();
 		skipWhiteSpace(Input, myCurrentPosition);
 
@@ -72,11 +72,12 @@ public class SpecialExpressionFactory extends ExpressionFactory {
 	}
 
 	public boolean isThisKindOfExpression(String Input, int CurrentPosition) {
-		if(Input.charAt(CurrentPosition)!='(') return false;
-		String commandName="";
-		int position=CurrentPosition+1;
-		while(Input.charAt(position)!=' ' && Input.charAt(position)!='('){
-			commandName+=Input.charAt(position);
+		if (Input.charAt(CurrentPosition) != '(')
+			return false;
+		String commandName = "";
+		int position = CurrentPosition + 1;
+		while (Input.charAt(position) != ' ' && Input.charAt(position) != '(') {
+			commandName += Input.charAt(position);
 			position++;
 		}
 		for (String s : Special) {

@@ -12,7 +12,8 @@ import model.ParserException;
  * 
  * @author Donghe Zhao
  */
-public class MultipleParameterOperatorExpressionFactory extends ExpressionFactory {
+public class MultipleParameterOperatorExpressionFactory extends
+		ExpressionFactory {
 
 	int myCurrentPosition;
 	private ArrayList<String> Operator = new ArrayList<String>(); // the list of
@@ -33,18 +34,18 @@ public class MultipleParameterOperatorExpressionFactory extends ExpressionFactor
 
 	// expression begins with a left paren followed by the command name,
 	// which is a sequence of alphabetic characters
-	 private static final Pattern EXPRESSION_BEGIN_REGEX = Pattern
-	 .compile("\\(([a-zA-Z]+)");
+	private static final Pattern EXPRESSION_BEGIN_REGEX = Pattern
+			.compile("\\(([a-zA-Z]+)");
 
 	public Expression CreateExpression(String Input, int CurrentPosition) {
 		Matcher expMatcher = EXPRESSION_BEGIN_REGEX.matcher(Input);
 		expMatcher.find(CurrentPosition);
 		String commandName = expMatcher.group(1); // the command
 		myCurrentPosition = expMatcher.end();
-		
-		ArrayList<Expression> OperandList=new ArrayList<Expression>();
-		
-		while(currentCharacter(Input, myCurrentPosition) != ')'){
+
+		ArrayList<Expression> OperandList = new ArrayList<Expression>();
+
+		while (currentCharacter(Input, myCurrentPosition) != ')') {
 			OperandList.add(Parser.getExpressionType(Input, myCurrentPosition));
 			myCurrentPosition = Parser.getMyCurrentPosition();
 		}
@@ -52,7 +53,8 @@ public class MultipleParameterOperatorExpressionFactory extends ExpressionFactor
 		skipWhiteSpace(Input, myCurrentPosition);
 		if (currentCharacter(Input, myCurrentPosition) == ')') {
 			myCurrentPosition++;
-			return new MultipleParameterOperatorExpression(commandName, OperandList);
+			return new MultipleParameterOperatorExpression(commandName,
+					OperandList);
 		}
 
 		else {
@@ -63,11 +65,12 @@ public class MultipleParameterOperatorExpressionFactory extends ExpressionFactor
 	}
 
 	public boolean isThisKindOfExpression(String Input, int CurrentPosition) {
-		if(Input.charAt(CurrentPosition)!='(') return false;
-		String commandName="";
-		int position=CurrentPosition+1;
-		while(Input.charAt(position)!=' ' && Input.charAt(position)!='('){
-			commandName+=Input.charAt(position);
+		if (Input.charAt(CurrentPosition) != '(')
+			return false;
+		String commandName = "";
+		int position = CurrentPosition + 1;
+		while (Input.charAt(position) != ' ' && Input.charAt(position) != '(') {
+			commandName += Input.charAt(position);
 			position++;
 		}
 		for (String s : Operator) {

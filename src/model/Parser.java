@@ -27,22 +27,22 @@ public class Parser {
 	private static int myCurrentPosition;
 	private static String myInput;
 	private static List<ExpressionFactory> ExpressionKinds = new ArrayList<ExpressionFactory>(); // the
-																							// list
-																							// of
-																							// children
-																							// class
-																							// of
-																							// Expression
-																							// Factory
+
+	// list
+	// of
+	// children
+	// class
+	// of
+	// Expression
+	// Factory
 
 	public Parser() {
-		ExpressionKinds.add(new NumberExpressionFactory());	
+		ExpressionKinds.add(new NumberExpressionFactory());
 		ExpressionKinds.add(new VariablesExpressionFactory());
 		ExpressionKinds.add(new TwoParameterOperatorExpressionFactory());
 		ExpressionKinds.add(new OneParameterOperatorExpressionFactory());
 		ExpressionKinds.add(new MultipleParameterOperatorExpressionFactory());
 		ExpressionKinds.add(new SpecialExpressionFactory());
-		
 
 	}
 

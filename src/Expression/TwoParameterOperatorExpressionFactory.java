@@ -46,14 +46,14 @@ public class TwoParameterOperatorExpressionFactory extends ExpressionFactory {
 			.compile("\\(([a-zA-Z+\\-*/%^]+)");
 
 	public Expression CreateExpression(String Input, int CurrentPosition) {
-		
+
 		Matcher expMatcher = EXPRESSION_BEGIN_REGEX.matcher(Input);
 		expMatcher.find(CurrentPosition);
 		String commandName = expMatcher.group(1); // the command
 		myCurrentPosition = expMatcher.end();
 
 		Expression left = Parser.getExpressionType(Input, myCurrentPosition); // parameter
-																			// one
+																				// one
 		myCurrentPosition = Parser.getMyCurrentPosition();
 		Expression right = Parser.getExpressionType(Input, myCurrentPosition); // parameter
 																				// two
@@ -73,11 +73,12 @@ public class TwoParameterOperatorExpressionFactory extends ExpressionFactory {
 	}
 
 	public boolean isThisKindOfExpression(String Input, int CurrentPosition) {
-		if(Input.charAt(CurrentPosition)!='(') return false;
-		String commandName="";
-		int position=CurrentPosition+1;
-		while(Input.charAt(position)!=' ' && Input.charAt(position)!='('){
-			commandName+=Input.charAt(position);
+		if (Input.charAt(CurrentPosition) != '(')
+			return false;
+		String commandName = "";
+		int position = CurrentPosition + 1;
+		while (Input.charAt(position) != ' ' && Input.charAt(position) != '(') {
+			commandName += Input.charAt(position);
 			position++;
 		}
 		for (String s : Operator) {

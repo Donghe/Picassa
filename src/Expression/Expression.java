@@ -15,7 +15,8 @@ public abstract class Expression {
 	/**
 	 * @return value of expression
 	 */
-	public abstract RGBColor evaluate(double DomainX, double DomainY, double CurrentTime);
+	public abstract RGBColor evaluate(double DomainX, double DomainY,
+			double CurrentTime);
 
 	/**
 	 * @return string representation of expression

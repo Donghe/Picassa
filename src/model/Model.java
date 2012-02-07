@@ -43,8 +43,9 @@ public class Model {
 			double evalY = imageToDomainScale(imageY, size.height);
 			for (int imageX = 0; imageX < size.width; imageX++) {
 				double evalX = imageToDomainScale(imageX, size.width);
-				result.setColor(imageX, imageY, toEval.evaluate(evalX, evalY, myCurrentTime)
-						.toJavaColor());
+				result.setColor(imageX, imageY,
+						toEval.evaluate(evalX, evalY, myCurrentTime)
+								.toJavaColor());
 			}
 		}
 		nextFrame();

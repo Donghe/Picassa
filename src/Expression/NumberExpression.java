@@ -20,7 +20,7 @@ public class NumberExpression extends Expression {
 	public NumberExpression() {
 	}
 
-	public RGBColor evaluate(double DomainX, double DomainY,double CurrentTime) {
+	public RGBColor evaluate(double DomainX, double DomainY, double CurrentTime) {
 		if (myCommand == null) {
 			return myValue;
 		} else
