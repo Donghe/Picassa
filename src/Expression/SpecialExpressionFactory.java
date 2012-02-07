@@ -72,9 +72,13 @@ public class SpecialExpressionFactory extends ExpressionFactory {
 	}
 
 	public boolean isThisKindOfExpression(String Input, int CurrentPosition) {
-		Matcher expMatcher = EXPRESSION_BEGIN_REGEX.matcher(Input);
-		expMatcher.find(CurrentPosition);
-		String commandName = expMatcher.group(1);
+		if(Input.charAt(CurrentPosition)!='(') return false;
+		String commandName="";
+		int position=CurrentPosition+1;
+		while(Input.charAt(position)!=' ' && Input.charAt(position)!='('){
+			commandName+=Input.charAt(position);
+			position++;
+		}
 		for (String s : Special) {
 			if (commandName.equals(s))
 				return true;

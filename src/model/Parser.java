@@ -36,12 +36,13 @@ public class Parser {
 																							// Factory
 
 	public Parser() {
-		ExpressionKinds.add(new NumberExpressionFactory());
+		ExpressionKinds.add(new NumberExpressionFactory());	
 		ExpressionKinds.add(new VariablesExpressionFactory());
 		ExpressionKinds.add(new TwoParameterOperatorExpressionFactory());
 		ExpressionKinds.add(new OneParameterOperatorExpressionFactory());
 		ExpressionKinds.add(new MultipleParameterOperatorExpressionFactory());
 		ExpressionKinds.add(new SpecialExpressionFactory());
+		
 
 	}
 

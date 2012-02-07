@@ -23,24 +23,21 @@ public class VariablesExpressionFactory extends ExpressionFactory {
 
 	// expression of x or y,
 	private static final Pattern EXPRESSION_VARIABLES_REGEX = Pattern
-			.compile("([a-zA-Z]+)");
+			.compile("([a-zA-Z])");
 
 	@Override
 	public Expression CreateExpression(String Input, int CurrentPosition) {
 		Matcher variableMatcher = EXPRESSION_VARIABLES_REGEX.matcher(Input);
 		variableMatcher.find(CurrentPosition);
-		String variableName = Input.substring(variableMatcher.start(),
-				variableMatcher.end()); // the command
+		String variableName = variableMatcher.group(1);
 		myCurrentPosition = variableMatcher.end();
 		return new VariablesExpression(variableName);
 
 	}
 
 	public boolean isThisKindOfExpression(String Input, int CurrentPosition) {
-		Matcher variableMatcher = EXPRESSION_VARIABLES_REGEX.matcher(Input);
-		variableMatcher.find(CurrentPosition);
-		String variableName = Input.substring(variableMatcher.start(),
-				variableMatcher.end());
+		String variableName = "" + Input.charAt(CurrentPosition);
+
 		for (String s : Variable) {
 			if (variableName.equals(s))
 				return true;

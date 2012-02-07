@@ -42,8 +42,6 @@ public class TwoParameterOperatorExpressionFactory extends ExpressionFactory {
 
 	// expression begins with a left paren followed by the command name,
 	// which is a sequence of alphabetic characters
-//	 private static final Pattern EXPRESSION_BEGIN_REGEX = Pattern
-//	 .compile("\\(([a-zA-Z]+)");
 	private static final Pattern EXPRESSION_BEGIN_REGEX = Pattern
 			.compile("\\(([a-zA-Z+\\-*/%^]+)");
 
@@ -75,9 +73,13 @@ public class TwoParameterOperatorExpressionFactory extends ExpressionFactory {
 	}
 
 	public boolean isThisKindOfExpression(String Input, int CurrentPosition) {
-		Matcher expMatcher = EXPRESSION_BEGIN_REGEX.matcher(Input);
-		expMatcher.find(CurrentPosition);
-		String commandName = expMatcher.group(1);
+		if(Input.charAt(CurrentPosition)!='(') return false;
+		String commandName="";
+		int position=CurrentPosition+1;
+		while(Input.charAt(position)!=' ' && Input.charAt(position)!='('){
+			commandName+=Input.charAt(position);
+			position++;
+		}
 		for (String s : Operator) {
 			if (commandName.equals(s))
 				return true;
